@@ -1,6 +1,5 @@
 #include"sdbclass(2).h"
 using namespace std;
-
 int main()
 {
     //declarations    
@@ -27,7 +26,7 @@ int main()
         {
             case 1: 
                 //cout << "Read and Store the Data...\n";
-                sdb.readFun(n);
+                sdb.readFun();
                 break;
             case 2: 
                 //cout << "Append New Record...\n";
@@ -42,7 +41,7 @@ int main()
                 {
                     cout << "Enter Reg# of the student to be searched: ";
                     cin >> sinfo;
-                    pos = sdb.searchFun(n, sinfo);
+                    pos = sdb.searchFun(sinfo);
                     if (pos == -1)
                         cout << "Student ID: " << sinfo << " not exists" <<endl;
                     else
@@ -85,7 +84,7 @@ int main()
                 //cout << "Display the Record...\n";
                 if (n != 0)
                 {
-                    sdb.dispFun(n);
+                    sdb.dispFun();
                 }
                  else
                     cout << "First, store data using Option-1...\n";    
