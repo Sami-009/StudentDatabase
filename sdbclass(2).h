@@ -1,9 +1,8 @@
 // Result Card - Using Classes - OOP
-#include <iostream>
-using namespace std;
-
 #define MAXST 60        // Max Students
 #define MAXSUB 5        // Max Subjects
+
+#define isValidNum(min,max,val) ((val>=min)&&(val<=max))
 
 // Classes Declaration
 struct myDate
@@ -21,37 +20,25 @@ class Student
         char grad;
     public:
         // Constructor
-        Student()
-            : rno(0), name(""), fName(""), DOB({0,0,0}), DOA({0,0,0}), mobt(0), perc(0.0), grad('F') {
-                for (int i = 0; i < MAXSUB; i++) {
-            mks[i] = 0; 
-            } 
-        }
+        Student():rno(0),name(""),fName(""),DOB({0,0,0}),DOA({0,0,0}),mobt(0),perc(0.0),grad('F')
+        {} 
         // Member Functions
         void getter();
-        void setter();
+        void setter(int rr);
         int getRno();
         // Checkers
-        bool isValidNum(int min, int max, int val);
         bool ageChecker(int yyB, int yyA);
         bool dateValid(myDate dateCheck);
         bool isLeapYear(int year);
 };
 
 // Member Function definitions
-void Student::setter()
+void Student::setter(int rr)
 {
     int sum = 0;
     do{
-        do { 
-            cout << "Reg#(4-digit): ";
-            cin >> rno;
-            if (isValidNum(1000, 9999, rno))
-                break;
-            else
-                cout<<"InValid Number.....!\n";
-        } while(true);
-
+        rno = rr;
+        cout<<"Enter Data of Reg Num: "<<rno<<endl;
         cout << "Name: ";
         cin.ignore(30,'\n');
         getline(cin, name);
@@ -187,10 +174,6 @@ int Student::getRno()
 }
 
 // Checker Function Definitions
-bool Student::isValidNum(int min, int max, int val)
-{
-    return ((val>=min)&&(val<=max));
-}
 
 bool Student::ageChecker(int yyB, int yyA)
 {
@@ -252,23 +235,19 @@ class StudentDb {
         Student students[MAXST];
         int nn;
     public:
-        void readFun(int& nn);
+        void readFun();
         void appFun(int& nn);
-        int searchFun(int nn, int s);
+        int searchFun(int s);
         void sortFun(int nn);
         void delFun(int& nn, int s);
         void updFun(int nn, int s);
-        void dispFun(int nn);
+        void dispFun();
 };
 
-bool isValidNum(int min, int max, int val)
-{
-    return ((val>=min)&&(val<=max));
-}
-
 // Function Definitions
-void StudentDb::readFun(int& nn)
+void StudentDb::readFun()
 {
+    int rnum;
     do{
         cout << "Enter Number of Students in the class [Max 60]: ";
         cin >> nn;
@@ -281,18 +260,40 @@ void StudentDb::readFun(int& nn)
     for (int i=0; i<nn; i++)
     {
         cout << "Enter Data for Student: " << i+1 << endl;
-        students[i].setter();
+        do{
+        do { 
+            cout << "Reg#(4-digit): ";
+            cin >> rnum;
+            if (isValidNum(1000, 9999, rnum))
+                break;
+            else
+                cout<<"InValid Number.....!\n";
+            
+        } while(true);
+        do{
+            if (searchFun(rnum) == -1)
+            {
+                students[i].setter(rnum);
+                break;
+            }
+        else
+            {
+                cout<<"\n Reg Number already exists...\n";
+                break;
+            }
+        }while(true);
+        }while(true);
     }
 }// end of readFun
 
 void StudentDb::appFun(int& nn)
 {
     cout << "Enter Data for Student: " << nn+1 << endl;
-    students[nn].setter();
+    students[nn].setter(11);
     nn++;
 }// end of appFun
 
-int StudentDb::searchFun(int nn, int s)
+int StudentDb::searchFun(int s)
 {
   int p = -1;
   for (int i = 0; i < nn; i++)
@@ -324,7 +325,7 @@ void StudentDb::sortFun(int nn)
 void StudentDb::delFun(int& nn, int s)
 {
     int p;
-    p = searchFun(nn, s);
+    p = searchFun(s);
     if (p != -1)           // student found in the list
     {
         for (int i = p; i < nn-1; i++)
@@ -337,24 +338,24 @@ void StudentDb::delFun(int& nn, int s)
      cout << "Student Not found in the List, can't be deleted..." << endl;
 }// end of delFun
 
-void StudentDb::updFun(int nn, int s)
+void StudentDb::updFun(int nn,int s)
 {
     int p;
-    p = searchFun(nn, s);
+    p = searchFun(s);
     if (p != -1)        // student found in the list
     {
         cout << "OLD RECORD" << endl;
         students[p].getter();        
         cout << "--------------------------------------------------" << endl;
         cout << "Now Enter New Data" << endl;
-        students[p].setter();
+        students[p].setter(11);
         cout << "Student's Record Updated successfully..." << endl;
     }
     else
         cout << "Student Not found in the List, can't be updated..." << endl;
 }// end of updFun
 
-void StudentDb::dispFun(int nn)
+void StudentDb::dispFun()
 {
     for (int i = 0; i < nn; i++)
     {
