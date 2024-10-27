@@ -250,27 +250,26 @@ void StudentDb::readFun()
     {
         cout << "Enter Data for Student: " << i+1 << endl;
         do{
-        do { 
-            cout << "Reg#(4-digit): ";
-            cin >> rnum;
-            if (isValidNum(1000, 9999, rnum))
-                break;
-            else
-                cout<<"InValid Number.....!\n";
-            
-        } while(true);
-        do{
-            if (searchFun(rnum) == -1)
-            {
-                students[i].setter(rnum);
-                break;
-            }
-        else
-            {
-                cout<<"\n Reg Number already exists...\n";
-                break;
-            }
-        }while(true);
+            do { 
+                cout << "Reg#(4-digit): ";
+                cin >> rnum;
+                if (isValidNum(1000, 9999, rnum))
+                    break;
+                else
+                    cout<<"InValid Number.....!\n";
+                } while(true);
+            do{
+                if (searchFun(rnum) == -1)
+                {
+                    students[i].setter(rnum);
+                    break;
+                }
+                else
+                {
+                    cout<<"\n Reg Number already exists...\n";
+                    break;
+                }
+            }while(true);
         }while(true);
     }
 }// end of readFun
@@ -278,7 +277,28 @@ void StudentDb::readFun()
 void StudentDb::appFun(int& nn)
 {
     cout << "Enter Data for Student: " << nn+1 << endl;
-    students[nn].setter(11);
+    do{
+            do { 
+                cout << "Reg#(4-digit): ";
+                cin >> rnum;
+                if (isValidNum(1000, 9999, rnum))
+                    break;
+                else
+                    cout<<"InValid Number.....!\n";
+                } while(true);
+            do{
+                if (searchFun(rnum) == -1)
+                {
+                    students[nn].setter(rnum);
+                    break;
+                }
+                else
+                {
+                    cout<<"\n Reg Number already exists...\n";
+                    break;
+                }
+            }while(true);
+        }while(true);
     nn++;
 }// end of appFun
 
