@@ -276,6 +276,7 @@ void StudentDb::readFun()
 
 void StudentDb::appFun(int& nn)
 {
+    int rnum;
     cout << "Enter Data for Student: " << nn+1 << endl;
     do{
             do { 
