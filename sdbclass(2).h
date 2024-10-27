@@ -256,7 +256,7 @@ void StudentDb::readFun()
                 if (isValidNum(1000, 9999, rnum))
                     break;
                 else
-                    cout<<"InValid Number.....!\n";
+                    cout<<"InValid Number.....!"<<endl;
                 } while(true);
             do{
                 if (searchFun(rnum) == -1)
@@ -266,7 +266,7 @@ void StudentDb::readFun()
                 }
                 else
                 {
-                    cout<<"\n Reg Number already exists...\n";
+                    cout<<"Reg Number already exists..."<<endl;
                     break;
                 }
             }while(true);
@@ -285,7 +285,7 @@ void StudentDb::appFun(int& nn)
                 if (isValidNum(1000, 9999, rnum))
                     break;
                 else
-                    cout<<"InValid Number.....!\n";
+                    cout<<"InValid Number.....!"<<endl;
                 } while(true);
             do{
                 if (searchFun(rnum) == -1)
@@ -295,7 +295,7 @@ void StudentDb::appFun(int& nn)
                 }
                 else
                 {
-                    cout<<"\n Reg Number already exists...\n";
+                    cout<<"Reg Number already exists..."<<endl;
                     break;
                 }
             }while(true);
