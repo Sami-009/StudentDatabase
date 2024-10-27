@@ -3,7 +3,8 @@
 #define MAXSUB 5        // Max Subjects
 
 #define isValidNum(min,max,val) ((val>=min)&&(val<=max))
-
+#define ageChecker(yyB,yyA) ((yyA - yyB) >= 17)
+#define isLeapYear(year) ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
 // Classes Declaration
 struct myDate
 {
@@ -26,10 +27,8 @@ class Student
         void getter();
         void setter(int rr);
         int getRno();
-        // Checkers
-        bool ageChecker(int yyB, int yyA);
+        // Date Checker
         bool dateValid(myDate dateCheck);
-        bool isLeapYear(int year);
 };
 
 // Member Function definitions
@@ -39,6 +38,7 @@ void Student::setter(int rr)
     do{
         rno = rr;
         cout<<"Enter Data of Reg Num: "<<rno<<endl;
+       
         cout << "Name: ";
         cin.ignore(30,'\n');
         getline(cin, name);
@@ -173,18 +173,7 @@ int Student::getRno()
     return rno;
 }
 
-// Checker Function Definitions
-
-bool Student::ageChecker(int yyB, int yyA)
-{
-    return ((yyA - yyB) >= 17);
-}
-
-bool Student::isLeapYear(int year) 
-{
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-}
-
+// Date Checker Func Definition
 bool Student::dateValid(myDate dateCheck)
 {
     if ((dateCheck.mm >= 1)&&(dateCheck.mm <= 12))
